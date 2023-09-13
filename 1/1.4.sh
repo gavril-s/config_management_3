@@ -1,10 +1,5 @@
 #!/bin/bash
 
-if [ $# -ne 1 ]; then
-  echo "Usage: $0 <file>"
-  exit 1
-fi
-
 file="$1"
 
 # Извлекаем все слова (идентификаторы) из файла

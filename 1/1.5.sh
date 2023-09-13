@@ -1,10 +1,5 @@
 #!/bin/bash
 
-if [ $# -ne 1 ]; then
-  echo "Usage: $0 <command_name>"
-  exit 1
-fi
-
 command_name="$1"
 
 # Проверяем, существует ли файл с именем команды
