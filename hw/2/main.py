@@ -8,10 +8,8 @@ def get_package_dependencies(package_name, seen_dependencies=None, cache=None):
 
     if cache is None:
         cache = {}
-
     if package_name in seen_dependencies:
         return {}
-
     if package_name in cache:
         return cache[package_name]
 
@@ -65,19 +63,16 @@ def generate_graphviz_text(dependencies, indent=0):
             graph_text += generate_graphviz_text(sub_dependencies, indent + 1)
     return graph_text
 
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Использование: python main.py <имя_пакета>")
-        sys.exit(1)
-
+def main():
     package_name = sys.argv[1]
     seen_dependencies = set()
     cache = {}
     dependencies = get_package_dependencies(package_name, seen_dependencies, cache)
 
-    # Исключаем зависимость от самого себя, если она есть
     dependencies.pop(package_name, None)
 
     graphviz_text = f"digraph G {{\n{generate_graphviz_text(dependencies)}}}"
-
     print(graphviz_text)
+
+if __name__ == "__main__":
+    main()
